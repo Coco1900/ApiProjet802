@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "undefined/subscriptions/c14fb713-24c5-4e3a-a1b5-770a30334c87/resourceGroups/AppTelisson/providers/Microsoft.Web/sites/ElectricWay",
+    "appService.deploySubpath": "."
+}
