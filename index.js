@@ -1,7 +1,9 @@
 const express = require('express');
+const bodyParser = require('body-parser');
 const app = express();
+const port = 3000;
 
-const authorised = '*'; //http://localhost:4200';
+const authorised = '*'; // http://localhost:4200';
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', authorised);
   res.setHeader('Access-Control-Allow-Headers', 'Origin, X-Requested-With, Content, Accept, Content-Type, Authorization, Identification');
@@ -9,14 +11,15 @@ app.use((req, res, next) => {
   next(); 
 });
 
-// Route pour le calcul du prix de l'électricité
-app.get('/prix-electricite/:km', (req, res) => {
-  const km = parseFloat(req.params.km);
-  const prix = km * 0.10; // 10 centimes par km
-  res.json({ prix: prix });
+
+app.use(bodyParser.json());
+
+app.post('/', (req, res) => {
+    const km = parseFloat(req.body.km);
+    const price = km * 0.15;
+    res.send({ price });
 });
 
-// Démarrage du serveur
-app.listen(3000, () => {
-  console.log('Serveur démarré sur le port 3000');
+app.listen(port, () => {
+    console.log(`Example app listening on port ${port}`);
 });
